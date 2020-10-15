@@ -1,23 +1,452 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hexo</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/15/%E7%A7%8B%E6%8B%9B%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/15/%E7%A7%8B%E6%8B%9B%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">秋招心得</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-10-15 17:21:43 / 修改时间：17:31:40" itemprop="dateCreated datePublished" datetime="2020-10-15T17:21:43+08:00">2020-10-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="秋招心得"><a href="#秋招心得" class="headerlink" title="秋招心得"></a>秋招心得</h2><p>2020年秋招大概从二月底三月份开始，决定准备找后端的工作，也是从二月底开始坚持每天刷LeetCode，每天最少三道题，用一上午的时间，使用Java来刷题，准备找Java开发的岗位，一开始第一遍刷题肯定是对题目是无法下手，因为不知道模版或者套路，那么基本上都是不会或者自己想不出思路的就直接看答案，然后理解别人的解题思路和格式，然后自己在理解了别人的思路上自己再写一遍。一个题目有多种解法，尽量一遍就把所有解法都学习一遍，这样大概一周差不多就做了二十道题左右，一定在六日回顾一下一周的题，大概过一遍，不然时间久了就会忘记，或者题目太多了解法会混。</p>
+<h3 id="刷题"><a href="#刷题" class="headerlink" title="刷题"></a>刷题</h3><p>LeetCode大概刷了三种类型，1、算法题整体前200，2、剑指offer，3、hot100，这三类总共大概300道题，总结最重要的，有时间可以继续，没有时间的话300道管够用</p>
+<p>项目一般来源是网上开源项目学习，自己实验室项目（如果和找的工作不相关，基本不会问），比赛的内容（尤其是名次比较好的），跟着视频学习的项目，学校有一些工作室在孵化一些项目，可以参与其中</p>
+<h3 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h3><p>实习我感觉是个有利弊的事情，尤其是暑期实习，如果实习公司是你想去的，那可以，如果不是特别想去的，建议慎重。今年疫情期间各个公司开始的都尤其早，很多都在六月份就开始了提前批，然后一直持续到九月底，互联网大厂基本结束。而暑期实习时间基本都是从六月份入职，实习两到三个月，八月转正或者结束答辩，基本这段时间的绝大部分精力都会投入到公司的任务中，很少能够有时间找其他公司面试笔试，面试时间也会冲突。而且实习不一定能够转正，也会错过很多公司的招聘。我是没有实习，正好能把所有时间用来找工作，所以基本是分阶段投简历，每次投五六家公司，保证时间能够错开，就这样我最忙的时候一天四个面试一个笔试。没有实习对我来说能够投更多的公司，相对获得的经验也比较多，结果可能比实习的同学还会好些。</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>面试大概投递30来家，在七月底面试四家提前批，华为软开，字节客户端，百度Java后端，网易游戏提前批，除了网易游戏ME在一面给了感谢信，华为直到十月直接签约才知道具体职级和薪资，字节在八月上旬给了offer，百度是在提前批开始前通过同学内推走社招面试，通过后改校招在八月中旬给的意向。之后在八月上旬开始大量投递提前批和正式批，但基本都是在九月开始面试并在九月下旬才走完流程，期间经历大量笔试、面试。最后收到的offer意向有字节，百度，美团，哔哩哔哩，携程，阿里，善诊（为了宣讲100和面试奖励1000去的），华为共八个offer意向书。</p>
+<p>银行（笔试最好多人分工一人一部分，不然做不完）</p>
+<p>互联网（大厂笔试都很难）</p>
+<p>研究所未投（没考虑）</p>
+<h3 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h3><p>1、刷题很重要，面试笔试都要做题，做出来题就过了一半，LeetCode最少300，多总结</p>
+<p>2、尽早确定目标岗位，提前准备，有比赛和项目经历很重要，尤其是自己动手做的，不是跟着视频的电商或者秒杀项目</p>
+<p>3、公司绝大多数是二到三轮技术面，涉及操作系统、网络、数据库、Java/c++基础、Linux等，面试时间大多30min~1h</p>
+<p>4、操作系统、网络、数据库、Java、c++基础这些可以看总结，但如果是没接触过这几门课的建议看书系统学习</p>
+<p>5、建议边面试边总结面试中遇到的不会的问题，以面养面，来增加实战经验，别因为自己没准备好就不敢投，越早名额越多，越容易，到了九月份名额减少竞争难度就很大了</p>
+<p>6、参加每个面试前可以去牛客查查相关面经，看看有没有同一个公司同一个岗位的，因为每个面试官有自己的问题清单，基本都不会跳出他的清单范围，很可能遇到相同的问题</p>
+<p>7、笔试尽量一个实验室的一起做一场笔试，共同奋战的感觉很好（是笔试后能够一起探讨，懂得都懂），但面试基本都得靠自己去拼，所以基础能多掌握就掌握，别人帮不了你</p>
+<p>8、每场面试笔试记得总结面经和笔经，好复盘和总结经验</p>
+<p>9、学会argue，在hr面或者三面会问到有没有其他offer，尽量用手里的同等价位的offer来说，别有啥就都说啥，还有没有就别乱吹，诚信还是很重要的，同等价位的offer可以适当提升自己的薪资，差距太大对方觉得你肯定不会去或者人家不懈，反而没啥用处</p>
+<p>10、hr面总会让你拿手头的其他同等竞争力的公司对比，让你选择你会倾向哪个公司，要会夸当前公司的好处，不用给太明确的肯定或者否定，让hr知道你是倾向本公司的就好</p>
+<p>11、反问环节最好问和自己或者公司相关的问题（曾经听到有人问面试官为什么不戴口罩的，这种幽默最好别开），一般一面问一些技术的疑问或者自己的面试中的不足在哪，二面和三面问公司或者你面试的岗位是做什么的，使用什么技术栈，项目组规模如何，hr面问自身的培养和成长相关的</p>
+<p>12、银行数据库问的很多，农行是根据你的简历，四五个面试官轮着问你，如果有两三秒答不出来就跳过，重点是数据库基础和数据库查询语句</p>
+<p>13、简历上的项目内容一定是自己很熟悉的部分，面试官有时候扣的很细</p>
+<p>14、公司有提前批尽量投提前批，投递越早越好，因为一般提前批和正式批不冲突，相当于有了多次投递的机会，提前批挂了还能投正式批。有内推尽量用内推，有的公司内推挂了自己单独投递还有机会。但一定看好，有的公司提前批会影响正式批，有的公司提前批和正式批是一起的，别毫无准备就随便投，随便面，重视每一次面试机会。</p>
+<p>15、一般在hr面会问薪资，或者在收到意向书后有谈薪给正式意向书阶段，提前去微信小程序（offershow）查查最近的薪资，心里有个范围，薪资算是学生入职看的比较重的一部分，能高自然就高一点。</p>
+<p>16、面试一般都会有一个自我介绍，时间在1-2分钟之间，我仅仅介绍自己的研究生的东西，比如实验室项目，比赛内容，班级职务和获奖情况。</p>
+<p>17、正式准备笔试前，多看看公司之前的机试题，大概知道题目数量，类型分布，大体时间，心中有数，学会取舍，把题都看一遍，先做有思路的，没思路的放后面，最后实在做不出来再骗分（要求结果简单，比如输出一个数字或者true、false之类的，直接猜数字输出）</p>
+<p>18、写代码注意规范，格式和命名很重要，不管是变量还是函数名都要起的有意义，有些公司手撕代码还是很看重的，还有边界条件的判断</p>
+<p>19、机试一般是要写全输入和输出的，从包含库写起，手撕代码看情况，有的需要运行，有的只需要讲思路，可以在牛客适应一下机试的题目环境</p>
+<p>简历：超级简历，网页在线编辑，一键生成导出简历，蛮方便的</p>
+<p>算法：LeetCode题解，lubuladong(微信公众号)</p>
+<p>基础知识：<a target="_blank" rel="noopener" href="https://cyc2018.github.io/CS-Notes/#/README">https://cyc2018.github.io/CS-Notes/#/README</a></p>
+<p>还有我自己总结的剑指offer的题解，自己总结的面试常见基础知识随后整理后再更新</p>
+<p>有问题欢迎大家咨询交流，也希望每个人都能找到理想的工作</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/15/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/15/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-15 17:02:02" itemprop="dateCreated datePublished" datetime="2020-10-15T17:02:02+08:00">2020-10-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
