@@ -1338,9 +1338,14 @@ pre code {
   display: inline-block;
 }
 .site-author-image {
-  border: 1px solid #eee;
+  display: block;
+  margin: 0 auto;
+  padding: $site-author-image-padding;
   max-width: 120px;
-  padding: 2px;
+  height: $site-author-image-height;
+  border: 1px solid #eee;
+  border-radius: 60%;
+  transition: 2.5s all;
 }
 .site-author-name {
   color: var(--text-color);
@@ -1640,6 +1645,7 @@ pre code {
   color: #ff0000;
   display: inline-block;
   margin: 0 5px;
+  animation: icon-animate 1.33s ease-in-out infinite;
 }
 @-moz-keyframes icon-animate {
   0%, 100% {
@@ -2650,7 +2656,7 @@ ul.breadcrumb li:last-child {
   display: none;
 }
 .sidebar-inner {
-  background: var(--content-bg-color);
+  background: rgba(255,255,255,0.8);
   border-radius: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   box-sizing: border-box;
@@ -2789,4 +2795,18 @@ ul.breadcrumb li:last-child {
   .comments {
     padding: 10px 12px;
   }
+}
+body {
+  background: url("/images/backpic.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+.main-inner {
+  background: #fff;
+  opacity: 0.8;
+}
+.header-inner {
+  opacity: 0.8;
 }
