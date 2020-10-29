@@ -266,7 +266,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-10-29 22:20:35 / 修改时间：22:23:26" itemprop="dateCreated datePublished" datetime="2020-10-29T22:20:35+08:00">2020-10-29</time>
+      <time title="创建时间：2020-10-29 22:20:35 / 修改时间：22:27:29" itemprop="dateCreated datePublished" datetime="2020-10-29T22:20:35+08:00">2020-10-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -304,25 +304,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209. 长度最小的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/">209. 长度最小的子数组</a></h2><p>给定一个含有 <strong>n</strong> 个正整数的数组和一个正整数 <strong>s ，</strong>找出该数组中满足其和 <strong>≥ s</strong> 的长度最小的连续子数组，并返回其长度<strong>。</strong>如果不存在符合条件的连续子</p>
-<p>数组，返回 0。</p>
-<p><strong>示例:</strong> </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3]</span><br><span class="line">输出: 2</span><br><span class="line">解释: 子数组 [4,3] 是该条件下的长度最小的连续子数组。</span><br></pre></td></tr></table></figure>
-
-<p><strong>进阶:</strong></p>
-<p>如果你已经完成了<em>O</em>(<em>n</em>) 时间复杂度的解法, 请尝试 <em>O</em>(<em>n</em> log <em>n</em>) 时间复杂度的解法。</p>
-<p><strong>双指针，滑动窗口</strong></p>
-<p>维护两个边界指针l,r,当sum&lt;s时r右移，增大窗口；当sum&lt;=s时，缩小左窗口</p>
-<p>模拟过程：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">s = <span class="number">7</span>, nums = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^</span><br><span class="line">l</span><br><span class="line">r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^ ^</span><br><span class="line">l r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">3</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^   ^</span><br><span class="line">l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">3</span> + <span class="number">1</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^     ^</span><br><span class="line">l     r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span> 大于等于了 <span class="number">7</span>, 记录此时的长度 min = <span class="number">4</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">  ^   ^</span><br><span class="line">  l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span>  小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">  ^     ^</span><br><span class="line">  l     r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span> + <span class="number">4</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">4</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">    ^   ^</span><br><span class="line">    l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">1</span> + <span class="number">2</span> + <span class="number">4</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">3</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">      ^ ^</span><br><span class="line">      l r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">4</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">      ^   ^</span><br><span class="line">      l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">4</span> + <span class="number">3</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">3</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">        ^ ^</span><br><span class="line">        l r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">4</span> + <span class="number">3</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">2</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">          ^</span><br><span class="line">          r</span><br><span class="line">          l</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">3</span> 小于 <span class="number">7</span>, r 右移，结束</span><br></pre></td></tr></table></figure>
-
-<p>时间复杂度：O(N)</p>
-<p>空间复杂度：O(1)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//双指针</span></span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">    <span class="keyword">if</span>(len == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> minlen = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">while</span>(r &lt; len)&#123;</span><br><span class="line">        sum += nums[r];</span><br><span class="line">        ++r;</span><br><span class="line">        <span class="keyword">while</span>(sum &gt;= s)&#123;</span><br><span class="line">            minlen = Math.min(minlen, r - l);</span><br><span class="line">            sum -= nums[l];</span><br><span class="line">            ++l;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minlen == Integer.MAX_VALUE ? <span class="number">0</span> : minlen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>二分搜索</strong></p>
-<p>思路比较不好想，一种是使用sum数组，成为一个递增和的数组，就可以使用二分法求长度；还有一种根据长度二分，len根据是否满足条件进行二分，len/2判断长度中是否存在合适的结果。</p>
-
+          <h2 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209. 长度最小的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/">209. 长度最小的子数组</a></h2><p>给定一个含有 <strong>n</strong> 个正整数的数组和一个正整数 <strong>s ，</strong>找出该数组中满足其和 <strong>≥ s</strong> 的长度最小的连续子数组并返回其长度<strong>。</strong>如果不存在符合条件的连续子数组，返回 0。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/29/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -374,7 +364,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-10-29 22:18:43 / 修改时间：22:19:57" itemprop="dateCreated datePublished" datetime="2020-10-29T22:18:43+08:00">2020-10-29</time>
+      <time title="创建时间：2020-10-29 22:18:43 / 修改时间：22:26:21" itemprop="dateCreated datePublished" datetime="2020-10-29T22:18:43+08:00">2020-10-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -413,22 +403,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="208-实现-Trie-前缀树"><a href="#208-实现-Trie-前缀树" class="headerlink" title="208. 实现 Trie (前缀树)"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-trie-prefix-tree/">208. 实现 Trie (前缀树)</a></h2><p>实现一个 Trie (前缀树)，包含 <code>insert</code>, <code>search</code>, 和 <code>startsWith</code> 这三个操作。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Trie trie &#x3D; new Trie();</span><br><span class="line"></span><br><span class="line">trie.insert(&quot;apple&quot;);</span><br><span class="line">trie.search(&quot;apple&quot;);   &#x2F;&#x2F; 返回 true</span><br><span class="line">trie.search(&quot;app&quot;);     &#x2F;&#x2F; 返回 false</span><br><span class="line">trie.startsWith(&quot;app&quot;); &#x2F;&#x2F; 返回 true</span><br><span class="line">trie.insert(&quot;app&quot;);   </span><br><span class="line">trie.search(&quot;app&quot;);     &#x2F;&#x2F; 返回 true</span><br></pre></td></tr></table></figure>
-
-<p><strong>说明:</strong></p>
-<ul>
-<li>你可以假设所有的输入都是由小写字母 <code>a-z</code> 构成的。</li>
-<li>保证所有输入均为非空字符串。</li>
-</ul>
-<p><strong>解析</strong></p>
-<p>前缀树的节点是这样的一个结构体</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> TrieNode[] next;<span class="comment">//每各节点都维护一个TrieNode数组放a~z字符</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isEnd;<span class="comment">//前缀树的结束标记</span></span><br><span class="line">    <span class="comment">//初始化</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        next = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</span><br><span class="line">        isEnd = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>搜索过程即遍历每个节点的数组，查找是否存在这个字符</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> TrieNode[] next;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isEnd;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            next = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</span><br><span class="line">            isEnd = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> TrieNode root;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Trie</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        root = <span class="keyword">new</span> TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Inserts a word into the trie. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String word)</span> </span>&#123;</span><br><span class="line">        TrieNode tmp = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : word.toCharArray()) &#123;</span><br><span class="line">            <span class="keyword">int</span> n = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (tmp.next[n] == <span class="keyword">null</span>) tmp.next[n] = <span class="keyword">new</span> TrieNode();</span><br><span class="line">            tmp = tmp.next[n];</span><br><span class="line">        &#125;</span><br><span class="line">        tmp.isEnd = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns if the word is in the trie. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(String word)</span> </span>&#123;</span><br><span class="line">        TrieNode tmp = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : word.toCharArray()) &#123;</span><br><span class="line">            <span class="keyword">int</span> n = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (tmp.next[n] == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            tmp = tmp.next[n];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp.isEnd;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns if there is any word in the trie that starts with the given prefix. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">startsWith</span><span class="params">(String prefix)</span> </span>&#123;</span><br><span class="line">        TrieNode tmp = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : prefix.toCharArray()) &#123;</span><br><span class="line">            <span class="keyword">int</span> n = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (tmp.next[n] == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            tmp = tmp.next[n];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your Trie object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * Trie obj = new Trie();</span></span><br><span class="line"><span class="comment"> * obj.insert(word);</span></span><br><span class="line"><span class="comment"> * boolean param_2 = obj.search(word);</span></span><br><span class="line"><span class="comment"> * boolean param_3 = obj.startsWith(prefix);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/29/208.%E5%AE%9E%E7%8E%B0Trie%E5%89%8D%E7%BC%80%E6%A0%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -480,7 +462,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-10-29 22:16:44 / 修改时间：22:17:48" itemprop="dateCreated datePublished" datetime="2020-10-29T22:16:44+08:00">2020-10-29</time>
+      <time title="创建时间：2020-10-29 22:16:44 / 修改时间：22:26:10" itemprop="dateCreated datePublished" datetime="2020-10-29T22:16:44+08:00">2020-10-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -521,37 +503,14 @@
           <h2 id="207-课程表"><a href="#207-课程表" class="headerlink" title="207. 课程表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/course-schedule/">207. 课程表</a></h2><p>你这个学期必须选修 <code>numCourse</code> 门课程，记为 <code>0</code> 到 <code>numCourse-1</code> 。</p>
 <p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：<code>[0,1]</code></p>
 <p>给定课程总量以及它们的先决条件，请你判断是否可能完成所有课程的学习？</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 2, [[1,0]] </span><br><span class="line">输出: true</span><br><span class="line">解释: 总共有 2 门课程。学习课程 1 之前，你需要完成课程 0。所以这是可能的。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 2, [[1,0],[0,1]]</span><br><span class="line">输出: false</span><br><span class="line">解释: 总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0；并且学习课程 0 之前，你还应先完成课程 1。这是不可能的。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ol>
-<li><p>输入的先决条件是由 <strong>边缘列表</strong> 表示的图形，而不是 邻接矩阵 。详情请参见<a target="_blank" rel="noopener" href="http://blog.csdn.net/woaidapaopao/article/details/51732947">图的表示法</a>。</p>
-</li>
-<li><p>你可以假定输入的先决条件中没有重复的边。</p>
-</li>
-<li><p><code>1 &lt;= numCourses &lt;= 10^5</code></p>
-</li>
-</ol>
-<p><strong>拓扑排序</strong></p>
-<p>本题即判断是否是有向无环图（DAG）。判断是否图中有环路。有两种方法，一种是拓扑排序，判断入度表中是否有不为0的点</p>
-<p>时间复杂度：O(V+E)，访问一个图所有节点和边</p>
-<p>空间复杂度：O(V+E)，建立邻接表花费的额外空间</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canFinish</span><span class="params">(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] inDegrees = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; adjacency = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)&#123;</span><br><span class="line">        adjacency.add(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span>[] pair : prerequisites)&#123;</span><br><span class="line">        inDegrees[pair[<span class="number">0</span>]]++;</span><br><span class="line">        adjacency.get(pair[<span class="number">1</span>]).add(pair[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(inDegrees[i] == <span class="number">0</span>) queue.offer(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">int</span> val = queue.poll();</span><br><span class="line">        numCourses--;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> cur : adjacency.get(val))&#123;</span><br><span class="line">            <span class="keyword">if</span>(--inDegrees[cur] == <span class="number">0</span>) queue.offer(cur);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> numCourses == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>DFS找环</strong></p>
-<p>dfs的方式遍历每一条路径，使用一个一位数组标记节点是否被访问过。</p>
-<p>flag[i] = 0,没有被访问过</p>
-<p>flag[i] = -1,被其他节点搜索过，不需要重复，剪枝</p>
-<p>flag[i] = 1,此次搜索已经访问过，出现环，返回false</p>
-<p>时间复杂度：O(V+E)，访问一个图所有节点和边</p>
-<p>空间复杂度：O(V+E)，建立邻接表花费的额外空间</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canFinish</span><span class="params">(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] flags = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; adjacency = <span class="keyword">new</span> ArrayList&lt;&gt;(numCourses);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)&#123;</span><br><span class="line">        adjacency.add(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span>[] pair : prerequisites)&#123;</span><br><span class="line">        adjacency.get(pair[<span class="number">1</span>]).add(pair[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfs(adjacency, flags, i)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; adjacency, <span class="keyword">int</span>[] flags, <span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(flags[i] == -<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(flags[i] == <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    flags[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j : adjacency.get(i))&#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfs(adjacency, flags, j)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    flags[i] = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/29/207.%E8%AF%BE%E7%A8%8B%E8%A1%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
