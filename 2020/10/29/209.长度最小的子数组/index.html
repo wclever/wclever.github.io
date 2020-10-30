@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="209. 长度最小的子数组给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组并返回其长度。如果不存在符合条件的连续子数组，返回 0。">
+  <meta name="description" content="209. 长度最小的子数组 给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组并返回其长度。如果不存在符合条件的连续子数组，返回 0。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="209.长度最小的子数组">
 <meta property="og:url" content="http://example.com/2020/10/29/209.%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Wclever">
-<meta property="og:description" content="209. 长度最小的子数组给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组并返回其长度。如果不存在符合条件的连续子数组，返回 0。">
+<meta property="og:description" content="209. 长度最小的子数组 给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组并返回其长度。如果不存在符合条件的连续子数组，返回 0。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-29T14:20:35.000Z">
-<meta property="article:modified_time" content="2020-10-29T14:27:29.288Z">
+<meta property="article:modified_time" content="2020-10-30T13:11:23.885Z">
 <meta property="article:author" content="Wang Chao">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -92,7 +92,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -164,7 +168,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -176,7 +180,6 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-text">209. 长度最小的子数组</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -192,7 +195,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -268,10 +271,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-10-29 22:20:35 / 修改时间：22:27:29" itemprop="dateCreated datePublished" datetime="2020-10-29T22:20:35+08:00">2020-10-29</time>
+      <time title="创建时间：2020-10-29 22:20:35" itemprop="dateCreated datePublished" datetime="2020-10-29T22:20:35+08:00">2020-10-29</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-30 21:11:23" itemprop="dateModified" datetime="2020-10-30T21:11:23+08:00">2020-10-30</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -308,21 +317,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209. 长度最小的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/">209. 长度最小的子数组</a></h2><p>给定一个含有 <strong>n</strong> 个正整数的数组和一个正整数 <strong>s ，</strong>找出该数组中满足其和 <strong>≥ s</strong> 的长度最小的连续子数组并返回其长度<strong>。</strong>如果不存在符合条件的连续子数组，返回 0。</p>
+        <p><strong><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/">209. 长度最小的子数组</a></strong></p>
+<p>给定一个含有 <strong>n</strong> 个正整数的数组和一个正整数 <strong>s ，</strong>找出该数组中满足其和 <strong>≥ s</strong> 的长度最小的连续子数组并返回其长度<strong>。</strong>如果不存在符合条件的连续子数组，返回 0。</p>
 <a id="more"></a>
 
 <p><strong>示例:</strong> </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: s &#x3D; 7, nums &#x3D; [2,3,1,2,4,3]</span><br><span class="line">输出: 2</span><br><span class="line">解释: 子数组 [4,3] 是该条件下的长度最小的连续子数组。</span><br></pre></td></tr></table></figure>
 
 <p><strong>进阶:</strong></p>
-<p>如果你已经完成了<em>O</em>(<em>n</em>) 时间复杂度的解法, 请尝试 <em>O</em>(<em>n</em> log <em>n</em>) 时间复杂度的解法。</p>
+<p>如果你已经完成了$O(n)$ 时间复杂度的解法, 请尝试 $O(nlogn)$ 时间复杂度的解法。</p>
 <p><strong>双指针，滑动窗口</strong></p>
 <p>维护两个边界指针l,r,当sum&lt;s时r右移，增大窗口；当sum&lt;=s时，缩小左窗口</p>
 <p>模拟过程：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">s = <span class="number">7</span>, nums = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^</span><br><span class="line">l</span><br><span class="line">r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^ ^</span><br><span class="line">l r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">3</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^   ^</span><br><span class="line">l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">3</span> + <span class="number">1</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">^     ^</span><br><span class="line">l     r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span> 大于等于了 <span class="number">7</span>, 记录此时的长度 min = <span class="number">4</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">  ^   ^</span><br><span class="line">  l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span>  小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">  ^     ^</span><br><span class="line">  l     r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">3</span> + <span class="number">1</span> + <span class="number">2</span> + <span class="number">4</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">4</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">    ^   ^</span><br><span class="line">    l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">1</span> + <span class="number">2</span> + <span class="number">4</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">3</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">      ^ ^</span><br><span class="line">      l r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">4</span> 小于 <span class="number">7</span>, r 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">      ^   ^</span><br><span class="line">      l   r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">2</span> + <span class="number">4</span> + <span class="number">3</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">3</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">        ^ ^</span><br><span class="line">        l r</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">4</span> + <span class="number">3</span> 大于等于了 <span class="number">7</span>, 更新此时的长度 min = <span class="number">2</span>, l 右移</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line">          ^</span><br><span class="line">          r</span><br><span class="line">          l</span><br><span class="line">上边的窗口内所有数字的和 <span class="number">3</span> 小于 <span class="number">7</span>, r 右移，结束</span><br></pre></td></tr></table></figure>
 
-<p>时间复杂度：O(N)</p>
-<p>空间复杂度：O(1)</p>
+<p>时间复杂度：$O(N)$</p>
+<p>空间复杂度：$O(1)$</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//双指针</span></span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">    <span class="keyword">if</span>(len == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> minlen = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">while</span>(r &lt; len)&#123;</span><br><span class="line">        sum += nums[r];</span><br><span class="line">        ++r;</span><br><span class="line">        <span class="keyword">while</span>(sum &gt;= s)&#123;</span><br><span class="line">            minlen = Math.min(minlen, r - l);</span><br><span class="line">            sum -= nums[l];</span><br><span class="line">            ++l;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minlen == Integer.MAX_VALUE ? <span class="number">0</span> : minlen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>二分搜索</strong></p>
@@ -409,13 +419,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">55k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">14 分钟</span>
+    <span title="站点阅读时长">50 分钟</span>
   </span>
 </div>
 <!--
@@ -459,6 +469,52 @@
 
 
   
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
